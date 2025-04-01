@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データ登録申請 - Creators Group</title>
+    <link rel="icon" href="https://cdn.creators-group.net/img/Logo_Creators_Lounge_R7_4-1.jpeg" type="image/jpeg">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #f0f8ff, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #1a73e8;
+            font-size: 2em;
+        }
+        p {
+            text-align: left;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .rules {
+            background: #eef7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .rules h2 {
+            color: #1a73e8;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .captcha-box {
+            background: #fffae6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background: #aaa;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: background 0.3s;
+            pointer-events: none;
+        }
+        .button.enabled {
+            background: #1a73e8;
+            pointer-events: auto;
+        }
+        .button.enabled:hover {
+            background: #155e8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>データ登録申請</h1>
+        <p>Creators Groupのデータ登録申請フォームへようこそ！<br>
+        下記のルールと免責事項をよく読んで、すべてチェックした上で登録をお願いします。</p>
+
+        <div class="rules">
+            <h2>🔹 登録ルール</h2>
+            <label><input type="checkbox" id="rule1"> 🚀 **公序良俗を守る！** みんなが安心できる場にしよう。</label>
+            <label><input type="checkbox" id="rule2"> 🎮 **Creators Lounge / MC / Group関連のもの限定！** 関係ないものはNGだよ。</label>
+            <label><input type="checkbox" id="rule3"> 📜 **ToS（利用規約）やプライバシーポリシーを守ろう！**</label>
+        </div>
+
+        <div class="rules">
+            <h2>⚠️ 免責事項</h2>
+            <label><input type="checkbox" id="disclaimer"> 📂 **ファイルサイズ25MB以上は審査に時間がかかるかも！** できるだけ軽量化してね。</label>
+        </div>
+
+        <div class="captcha-box">
+            <h2>🤖 確認テスト</h2>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAABDYsrVB09M0wnrG" data-callback="captchaVerified"></div>
+        </div>
+
+        <p>すべてのチェックボックスとTurnstileをクリアすると、登録ボタンが有効になります。</p>
+        
+        <a class="button" id="submitButton" href="https://forms.gle/your-google-form-url" target="_blank">登録フォームへ</a>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const submitButton = document.getElementById('submitButton');
+        let captchaPassed = false;
+
+        function updateButtonState() {
+            const allChecked = [...checkboxes].every(checkbox => checkbox.checked);
+            if (allChecked && captchaPassed) {
+                submitButton.classList.add('enabled');
+            } else {
+                submitButton.classList.remove('enabled');
+            }
+        }
+
+        function captchaVerified() {
+            captchaPassed = true;
+            updateButtonState();
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateButtonState);
+        });
+    </script>
+</body>
+</html>
