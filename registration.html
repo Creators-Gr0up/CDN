@@ -146,7 +146,7 @@
             <h2>🤖 確認テスト</h2>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAABDYsrVB09M0wnrG" data-callback="captchaVerified"></div>
         </div>
-<a href="https://cdn.creators-group.net/tos">利用規約</a><a href="https://cdn.creators-group.net/priv-p">プライバシーポリシー</a>
+        <a href="https://cdn.creators-group.net/tos">利用規約</a><a href="https://cdn.creators-group.net/priv-p">プライバシーポリシー</a>
         <p>すべてのチェックボックスとTurnstileをクリアすると、登録ボタンが有効になります。</p>
         
         <a class="button" id="submitButton" href="https://forms.gle/your-google-form-url" target="_blank">登録フォームへ</a>
@@ -175,6 +175,10 @@
             updateButtonState();
         }
 
+        // 初期状態でボタンは無効
+        submitButton.classList.remove('enabled');
+
+        // チェックボックスの変更に反応
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateButtonState);
         });
