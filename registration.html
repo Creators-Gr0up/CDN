@@ -7,39 +7,55 @@
     <link rel="icon" href="https://cdn.creators-group.net/img/Logo_Creators_Lounge_R7_4-1.jpeg" type="image/jpeg">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
+        @font-face {
+            font-family: 'KleeOne';
+            src: url('https://cdn.creators-group.net/fonts/KleeOne-Regular.ttf') format('truetype');
+        }
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #f0f8ff, #ffffff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'KleeOne', sans-serif !important;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background: linear-gradient(to bottom, #b3e0ff, #ffffff);
+            color: #333;
+            animation: fadeInBackground 3s ease-out;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+        }
+        .content {
+            margin: 0;
+            flex: 1;
         }
         .container {
-            background: white;
+            max-width: 1000px;
+            margin: 50px auto;
             padding: 30px;
-            border-radius: 12px;
+            background: white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            border-radius: 12px;
             text-align: center;
+            opacity: 0;
+            animation: fadeInContent 2s ease-out forwards;
         }
         h1 {
             color: #1a73e8;
-            font-size: 2em;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInText 2s ease-out 1s forwards;
         }
         p {
-            text-align: left;
-            font-size: 1.1em;
-            line-height: 1.6;
+            font-size: 1.2em;
+            margin: 10px 0;
         }
         .rules, .disclaimer {
-            background: #eef7ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 20px;
+            border-radius: 10px;
             text-align: left;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
         }
         .rules h2, .disclaimer h2 {
             color: #1a73e8;
@@ -64,24 +80,47 @@
             margin: 20px 0;
             text-align: center;
         }
-        .button {
-            display: inline-block;
-            padding: 12px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            background: #aaa;
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #1a73e8;
             color: white;
-            font-size: 1.2em;
+            border-radius: 12px 12px 0 0;
+            margin-top: auto;
+        }
+        a.button {
+            display: inline-block;
             text-decoration: none;
-            transition: background 0.3s;
+            color: white;
+            background-color: #1a73e8;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            margin-top: 20px;
             pointer-events: none;
         }
-        .button.enabled {
+        a.button.enabled {
             background: #1a73e8;
             pointer-events: auto;
         }
-        .button.enabled:hover {
+        a.button.enabled:hover {
             background: #155e8a;
+        }
+
+        /* アニメーション */
+        @keyframes fadeInBackground {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInContent {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -107,11 +146,15 @@
             <h2>🤖 確認テスト</h2>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAABDYsrVB09M0wnrG" data-callback="captchaVerified"></div>
         </div>
-
+<a href="https://cdn.creators-group.net/tos">利用規約</a><a href="https://cdn.creators-group.net/priv-p">プライバシーポリシー</a>
         <p>すべてのチェックボックスとTurnstileをクリアすると、登録ボタンが有効になります。</p>
         
         <a class="button" id="submitButton" href="https://forms.gle/your-google-form-url" target="_blank">登録フォームへ</a>
     </div>
+
+    <footer>
+        &copy; 2025 Creators Group. All rights reserved.
+    </footer>
 
     <script>
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
