@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データ登録申請 - Creators Group CDN</title>
+    <title>データ登録申請 - Creators Group</title>
     <link rel="icon" href="https://cdn.creators-group.net/img/Logo_Creators_Lounge_R7_4-1.jpeg" type="image/jpeg">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
@@ -22,10 +22,6 @@
             flex-direction: column;
             height: 100vh;
             justify-content: space-between;
-        }
-        .content {
-            margin: 0;
-            flex: 1;
         }
         .container {
             max-width: 1000px;
@@ -92,24 +88,23 @@
             display: inline-block;
             text-decoration: none;
             color: white;
-            background-color: #b0b0b0; /* 初期は灰色 */
+            background-color: #ccc; /* 最初は灰色 */
             font-size: 1.2em;
             padding: 10px 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s;
             margin-top: 20px;
-            pointer-events: none; /* 初期は反応なし */
+            pointer-events: none; /* クリック無効 */
         }
         a.button.enabled {
-            background: #1a73e8; /* すべてチェックされた時に青色 */
-            pointer-events: auto; /* 反応あり */
+            background: #1a73e8;
+            pointer-events: auto;
         }
         a.button.enabled:hover {
             background: #155e8a;
         }
 
-        /* アニメーション */
         @keyframes fadeInBackground {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -139,17 +134,21 @@
 
         <div class="disclaimer">
             <h2>⚠️ 免責事項</h2>
-            <label><input type="checkbox" id="disclaimer"> 📂 ファイルサイズ25MB以上は審査に時間がかかるかも！ できるだけ軽量化してね。</label>
+            <label><input type="checkbox" id="disclaimer1"> 📂 ファイルサイズ25MB以上は審査に時間がかかるかも！ できるだけ軽量化してね。</label>
+            <label><input type="checkbox" id="disclaimer2"> ❌ ファイルサイズ100MB以上はアップロードできません！ 小さくしてね。</label>
         </div>
 
         <div class="captcha-box">
             <h2>🤖 確認テスト</h2>
             <div class="cf-turnstile" data-sitekey="0x4AAAAAABDYsrVB09M0wnrG" data-callback="captchaVerified"></div>
         </div>
-        <a href="https://cdn.creators-group.net/tos">利用規約</a>&nbsp;&nbsp;&nbsp;<a href="https://cdn.creators-group.net/priv-p">プライバシーポリシー</a>
+
+        <a href="https://cdn.creators-group.net/tos">利用規約</a>
+        <a href="https://cdn.creators-group.net/priv-p">プライバシーポリシー</a>
+
         <p>すべてのチェックボックスとTurnstileをクリアすると、登録ボタンが有効になります。</p>
-        
-        <a class="button" id="submitButton" href="https://ur0.cc/Yr1uU" target="_blank">登録フォームへ</a>
+
+        <a class="button" id="submitButton" href="https://forms.gle/your-google-form-url" target="_blank">登録フォームへ</a>
     </div>
 
     <footer>
