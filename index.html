@@ -117,6 +117,34 @@
             100% { opacity: 1; }
         }  
     </style>
+    <script>
+async function checkAccess() {
+    let ip = await getIP();
+    let ua = navigator.userAgent;
+    let path = window.location.pathname;
+    
+    let response = await fetch("https://script.google.com/a/macros/mict.ed.jp/s/AKfycbwxzU8kvYfO2-Eiz1Fr4w4W38Xf_cE7Stc2Gt4u3wBybr9v4G-kmNt31xgqeiI9LxWLWQ/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ip, ua, path })
+    });
+
+    let data = await response.json();
+    
+    if (data.blocked) {
+        document.body.innerHTML = `<h1>アクセス禁止</h1><p>${data.reason}</p>`;
+    }
+}
+
+async function getIP() {
+    let res = await fetch("https://api64.ipify.org?format=json");
+    let data = await res.json();
+    return data.ip;
+}
+
+checkAccess();
+
+    </script>
 </head>
 <body>
     <div class="container">
